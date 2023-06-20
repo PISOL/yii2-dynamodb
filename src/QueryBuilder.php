@@ -251,7 +251,7 @@ class QueryBuilder extends BaseObject
             }
         }
 
-        return !in_array(0, $allKeyTrue) ? 1 : in_array(1, $allKeyTrue) ? 2 : 0;
+        return (!in_array(0, $allKeyTrue) ? 1 : in_array(1, $allKeyTrue)) ? 2 : 0;
     }
 
     /**
