@@ -117,6 +117,15 @@ class Query extends Component implements QueryInterface
     public $additionalArguments = [];
 
     /**
+     * Whether to use an index instead of the Partition Key.
+     *
+     * This can be either boolean, false if not to use an index or the index name.
+     *
+     * @var string|boolean
+     */
+    public $index = false;
+
+    /**
      * Creates a DB command that can be used to execute this query.
      * @param Connection $db The database connection used to generate the SQL statement.
      * If this parameter is not given, the `db` application component will be used.
@@ -181,6 +190,16 @@ class Query extends Component implements QueryInterface
             }
         }
 
+        return $this;
+    }
+
+    /**
+     * Sets the index for the query.
+     * @param string|false $index The Index to use.
+     * @return static the query object itself.
+     */
+    public function useIndex($index){
+        $this->index = $index;
         return $this;
     }
 

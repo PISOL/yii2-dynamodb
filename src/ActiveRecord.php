@@ -300,7 +300,13 @@ class ActiveRecord extends BaseActiveRecord
      */
     public static function deleteAll($condition = '', $params = [])
     {
-        throw new \yii\base\NotSupportedException(__METHOD__ . ' is not supported.');
+        if(isset($condition[static::primaryKey()[0]])){
+            $condition = [$condition];
+        }
+        return self::getDb()->createCommand()->batchDeleteItem(
+            static::tableName(),
+            $condition,
+        )->execute();
     }
 
     /**

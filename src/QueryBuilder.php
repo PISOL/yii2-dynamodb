@@ -370,10 +370,12 @@ class QueryBuilder extends BaseObject
                 $options,
                 $this->buildWhereQueryScan($query->where)
             );
-            // TODO Seperate FilterExpression and KeyConditionExpression
+            // DONE Seperate FilterExpression and KeyConditionExpression
             // For now, change all condition to KeyConditionExpression (assumed
             // all where condition use key attributes)
-
+            if($query->index){
+                $options["IndexName"] = $query->index;
+            }
             $options['KeyConditionExpression'] = $options['FilterExpression'];
             unset($options['FilterExpression']);
         }
@@ -1012,7 +1014,7 @@ class QueryBuilder extends BaseObject
      */
     public function putExpressionAttributeName(Query $query, $attribute)
     {
-        $name = array_search($query->expressionAttributeNames, $attribute);
+        $name = array_search($attribute, $query->expressionAttributeNames);
         if ($name !== false) {
             return $name;
         }
@@ -1501,7 +1503,7 @@ class QueryBuilder extends BaseObject
      */
     public function updateItem($table, array $keys, array $updates, array $options = [])
     {
-        return updateItemSelectedAction($table, $keys, $updates, 'PUT', $options);
+        return $this->updateItemSelectedAction($table, $keys, $updates, 'PUT', $options);
     }
 
     /**

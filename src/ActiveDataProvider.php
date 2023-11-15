@@ -7,6 +7,7 @@
 namespace UrbanIndo\Yii2\DynamoDb;
 
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\base\InvalidParamException;
 use yii\di\Instance;
 use yii\helpers\ArrayHelper;

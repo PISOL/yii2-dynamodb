@@ -119,6 +119,7 @@ class ActiveQuery extends Query implements ActiveQueryInterface
      */
     public function one($db = null)
     {
+        $this->using = self::USING_GET_ITEM;
         $row = parent::one($db);
         if ($row !== false) {
             $models = $this->populate([$row]);
@@ -136,6 +137,7 @@ class ActiveQuery extends Query implements ActiveQueryInterface
      */
     public function all($db = null)
     {
+        $this->using = self::USING_QUERY;
         return parent::all($db);
     }
 }
