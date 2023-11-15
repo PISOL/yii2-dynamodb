@@ -19,19 +19,25 @@ This extension requires
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
-Either run
+add
 
 ```
-php composer.phar require --prefer-dist urbanindo/yii2-dynamodb "*"
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/PISOL/yii2-dynamodb"
+        }
+    ],
+}
 ```
 
-or add
+to your `composer.json` file and then run
 
 ```
-"urbanindo/yii2-dynamodb": "*"
+php composer.phar require urbanindo/yii2-dynamodb dev-master
 ```
 
-to the require section of your `composer.json` file.
 
 ## Setting Up
 
