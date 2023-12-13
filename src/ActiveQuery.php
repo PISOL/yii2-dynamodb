@@ -137,7 +137,7 @@ class ActiveQuery extends Query implements ActiveQueryInterface
      */
     public function all($db = null)
     {
-        $this->using = self::USING_QUERY;
+        if(!$this->usingIsForced()) $this->using = self::USING_QUERY;
         return parent::all($db);
     }
 }

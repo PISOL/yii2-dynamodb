@@ -57,6 +57,8 @@ class Query extends Component implements QueryInterface
      */
     const RESPONSE_KEY_PARAM = '_response';
 
+    protected $_forceUsing = false;
+
     /**
      * Array of attributes being selected. It will be used to build Projection Expression.
      *
@@ -405,5 +407,14 @@ class Query extends Component implements QueryInterface
     public function count($q = '*', $db = null)
     {
         throw new NotSupportedException('Count operation is not suppported.');
+    }
+    
+    public function usingIsForced(){
+        return $this->_forceUsing;
+    }
+
+    public function forceUsing($using){
+        $this->_forceUsing = true;
+        $this->using = $using;
     }
 }
